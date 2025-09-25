@@ -1,3 +1,15 @@
+// --- SEND SCORE TO GOOGLE SHEET ---
+function sendScoreToSheet(data) {
+  const url = "YOUR_SCRIPT_URL_HERE"; // replace with your deployed Google Apps Script Web App URL
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(data)
+  }).catch(err => console.error("Error sending score:", err));
+}
 // --- GAME STATE ---
 let mandate = 5;
 let tallies = {Confucian:0, Daoist:0, Legalist:0};
@@ -543,6 +555,17 @@ function play(nodeId) {
       );
       let mandateLevel = mandate >= 8 ? "high" : mandate >= 4 ? "mid" : "low";
       let endingText = endings[maxPhilo][mandateLevel];
+
+      // Prepare score data for sending
+      const resultData = {
+        mandate: mandate,
+        confucian: tallies.Confucian,
+        daoist: tallies.Daoist,
+        legalist: tallies.Legalist,
+        dominant: maxPhilo,
+        ending: endingText
+      };
+      sendScoreToSheet(resultData);
 
       // Compose scorecard text
       let scorecard =
