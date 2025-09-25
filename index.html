@@ -1,1 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mandate of Heaven Challenge</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="fade-screen" role="dialog" aria-modal="true" aria-labelledby="intro-heading">
+    <div id="fade-content" class="intro-panel">
+      <h2 id="intro-heading" class="intro-title">Welcome, Emperor</h2>
+      <p class="intro-sub">Guide your dynasty and keep the Mandate rising.</p>
+      <ul class="intro-points">
+        <li>Make 8 decisions that shape your reign</li>
+        <li>Choose a guiding philosophy to stay consistent</li>
+        <li>Watch the jade pillar on the left rise toward Heaven</li>
+        <li>Use buttons or press 1–3 to choose</li>
+      </ul>
+      <button id="fade-continue">Begin Your Reign</button>
+    </div>
+  </div>
+  <div id="game-container" class="step-fade">
+    <h1 id="title">Mandate of Heaven Challenge</h1>
+    <!-- Decorative sprites (aria-hidden) -->
+    <div class="sprite lantern lantern-left" aria-hidden="true"></div>
+    <div class="sprite lantern lantern-right" aria-hidden="true"></div>
+    <div class="sprite cloud cloud-top" aria-hidden="true"></div>
+    <div id="hud">
+      <span id="progress">Decision 1 of 8</span>
+      <details id="howto">
+        <summary>How to Play</summary>
+        <p class="intro-sub">Guide your dynasty and keep the Mandate rising.</p>
+        <ul class="intro-points">
+          <li>Make 8 decisions that shape your reign</li>
+          <li>Choose a guiding philosophy to stay consistent</li>
+          <li>Watch the jade pillar on the left rise toward Heaven</li>
+          <li>Use buttons or press 1–3 to choose</li>
+        </ul>
+      </details>
+    </div>
+    <div id="content">
+      <aside id="leftbar" role="complementary" aria-label="Mandate status">
+        <h3>Mandate of Heaven</h3>
+        <div class="vbar"><div id="mandate-bar" class="vfill" role="progressbar" aria-label="Mandate of Heaven" aria-valuemin="0" aria-valuemax="10" aria-valuenow="5"></div></div>
+        <div id="mandate-label" aria-live="polite"><span id="mandate-value">5/10</span></div>
+      </aside>
+      <main id="main">
+        <div id="text" role="region" aria-live="polite" aria-atomic="true"></div>
+        <div id="options" role="group" aria-labelledby="text"></div>
+        <div id="outcome" role="region" aria-live="polite" aria-atomic="true" aria-label="Outcome"></div>
+      </main>
+      <aside id="sidebar" role="complementary" aria-label="Philosophy hints">
+        <h3>Philosophy Hints</h3>
+        <div id="philo-cards"></div>
+      </aside>
+    </div>
+    <section id="vocab-center" aria-labelledby="vocab-heading">
+      <h3 id="vocab-heading">Vocabulary</h3>
+      <div id="vocab-words" class="vocab-list"></div>
+      <div id="vocab-definition" class="vocab-definition" aria-live="polite" aria-atomic="true">Click a word to see its meaning.</div>
+    </section>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
 
