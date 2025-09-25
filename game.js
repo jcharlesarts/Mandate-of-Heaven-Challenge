@@ -1,6 +1,6 @@
 // --- SEND SCORE TO GOOGLE SHEET ---
 function sendScoreToSheet(data) {
-  const url = "https://script.google.com/macros/s/AKfycby4EmJtEL7QiMJTed9y9Cf0_CN6wecnwicRj_UASLv017_QYtpOIW3h7VeL-3ZI3U0e/execYOUR_SCRIPT_URL_HERE"; // replace with your deployed Google Apps Script Web App URL
+  const url = "https://script.google.com/macros/s/AKfycby4EmJtEL7QiMJTed9y9Cf0_CN6wecnwicRj_UASLv017_QYtpOIW3h7VeL-3ZI3U0e/exec"; // replace with your deployed Google Apps Script Web App URL
   fetch(url, {
     method: "POST",
     mode: "no-cors",
@@ -183,7 +183,7 @@ const events = {
       "You are the new emperor.\nPeople are watching to see how you will rule in your first year.\nWhat philosophy will you choose to guide you?",
     options: [
       {
-        choice: "You choose to honor rites and support schools",
+        choice: "Restart weekly ancestor rites and reopen royal schools",
         outcome:
           "Teachers start working and ceremonies happen. Scholars are happy with your respect for order.",
         mandate: 1,
@@ -191,7 +191,7 @@ const events = {
         next: "r1_harvest",
       },
       {
-        choice: "You decide to lower taxes and let life flow",
+        choice: "Cut small taxes and pause new rules for one month",
         outcome:
           "People feel less pressure. Officials do less, and daily life goes on smoothly.",
         mandate: 1,
@@ -199,7 +199,7 @@ const events = {
         next: "r1_harvest",
       },
       {
-        choice: "You make strict laws and punishments",
+        choice: "Post clear laws at city gates and fine lawbreakers",
         outcome:
           "Courts work fast and clear. Order grows, but some people feel scared.",
         mandate: 1,
@@ -213,7 +213,7 @@ const events = {
       "The north has a bad harvest. Food is low in many places.\n\nWhat will you do?",
     options: [
       {
-        choice: "You open granaries and cancel taxes for the year",
+        choice: "Open royal granaries and cancel farm taxes for one year",
         outcome:
           "Food is given out and temples help. People are thankful and stay loyal.",
         mandate: 2,
@@ -221,7 +221,7 @@ const events = {
         next: "r2_flood",
       },
       {
-        choice: "You trust local groups and let markets fix things",
+        choice: "Let village leaders trade freely; no price controls from the court",
         outcome:
           "Some places do okay; others have trouble. The court stays out to avoid mistakes.",
         mandate: 0,
@@ -229,7 +229,7 @@ const events = {
         next: "r2_flood",
       },
       {
-        choice: "You punish hoarders and take grain for the army",
+        choice: "Seize hidden grain and send it to army storehouses",
         outcome:
           "Order is kept, but people are unhappy. Rumors say Heaven dislikes harshness in hunger.",
         mandate: -1,
@@ -243,7 +243,7 @@ const events = {
       "The Yellow River floods. Dykes break in two areas.\n\nWhat will you do?",
     options: [
       {
-        choice: "You send workers to fix the dykes right away",
+        choice: "Send 5,000 workers to rebuild the dykes this week",
         outcome:
           "Many people work hard on the river. The repairs hold, but forced work makes people upset.",
         mandate: 1,
@@ -251,7 +251,7 @@ const events = {
         next: "r3_exams",
       },
       {
-        choice: "You lead ceremonies and help people who lost homes",
+        choice: "Lead mourning rites and send carts of wood and rice to families",
         outcome:
           "You wear mourning clothes and send help with respect. People feel cared for and safe.",
         mandate: 1,
@@ -259,7 +259,7 @@ const events = {
         next: "r3_exams",
       },
       {
-        choice: "You move villages and let the river find its way",
+        choice: "Move two villages uphill; stop rebuilding in the floodplain",
         outcome:
           "It costs a lot now, but people move to safer places. Nature is given space.",
         mandate: 0,
@@ -273,7 +273,7 @@ const events = {
       "At court, people argue about the future of government.\n\nWhat will you do?",
     options: [
       {
-        choice: "You give money to schools and promote learned officials",
+        choice: "Fund exam halls and hire top scorers as officials",
         outcome:
           "Good scholars get jobs. Respect for rules helps run the government well.",
         mandate: 2,
@@ -281,7 +281,7 @@ const events = {
         next: "r4_border",
       },
       {
-        choice: "You cut offices and make government simpler",
+        choice: "Close low-use offices and cut paperwork",
         outcome:
           "Less paperwork and fewer orders. Life is easier, but some jobs stay empty.",
         mandate: 0,
@@ -289,7 +289,7 @@ const events = {
         next: "r4_border",
       },
       {
-        choice: "You pick loyal commanders instead of scholars",
+        choice: "Put army commanders in charge of provinces",
         outcome:
           "Generals get ahead fast. Control is tighter, but old books are ignored.",
         mandate: -1,
@@ -303,7 +303,7 @@ const events = {
       "A tribe at the border tests your defenses. Small fights happen along the line.\n\nWhat will you do?",
     options: [
       {
-        choice: "You open talks and trade gifts to ease tension",
+        choice: "Meet border chiefs; trade horses, tea, and grain for peace",
         outcome:
           "Messengers share tea and horses. A weak peace lasts without fighting.",
         mandate: 1,
@@ -311,7 +311,7 @@ const events = {
         next: "r5_corruption",
       },
       {
-        choice: "You call up soldiers and build stronger walls",
+        choice: "Call up 1,000 soldiers and add watchtowers along the line",
         outcome:
           "More soldiers guard the land. Raiders stay away, but taxes go up.",
         mandate: 1,
@@ -319,7 +319,7 @@ const events = {
         next: "r5_corruption",
       },
       {
-        choice: "You put a trusted, learned commander in charge",
+        choice: "Appoint a veteran commander who respects local customs",
         outcome:
           "An experienced leader is firm but respectful. Soldiers feel better and work harder.",
         mandate: 1,
@@ -333,7 +333,7 @@ const events = {
       "A governor is caught stealing money meant for help.\n\nWhat will you do?",
     options: [
       {
-        choice: "You make the governor confess, pay back money, and leave",
+        choice: "Hold a public hearing; make him repay silver; remove him from office",
         outcome:
           "The governor is sorry, pays back, and leaves office. People trust you more.",
         mandate: 1,
@@ -341,7 +341,7 @@ const events = {
         next: "r6_trade",
       },
       {
-        choice: "You punish the governor to stop others from stealing",
+        choice: "Jail him for three years and ban him from office",
         outcome:
           "Justice is quick and strong. Officials are careful but less friendly.",
         mandate: 0,
@@ -349,7 +349,7 @@ const events = {
         next: "r6_trade",
       },
       {
-        choice: "You let local leaders handle it without your help",
+        choice: "Let village elders judge the case; send no royal orders",
         outcome:
           "Local elders make a deal. Some think the central government is not helping enough.",
         mandate: -1,
@@ -363,7 +363,7 @@ const events = {
       "The southeast grows rich. Merchants get powerful, and some at court worry.\n\nWhat will you do?",
     options: [
       {
-        choice: "You set rules and raise merit over money",
+        choice: "Require exams for top jobs and limit gifts from merchants",
         outcome:
           "Tests and ceremonies make clear ranks. People think the system is fairer.",
         mandate: 1,
@@ -371,7 +371,7 @@ const events = {
         next: "r7_omen",
       },
       {
-        choice: "You let trade happen with few rules",
+        choice: "Cut market fees and open two new fairs",
         outcome:
           "Markets work freely. Some old ways change, but people have enough food.",
         mandate: 1,
@@ -379,7 +379,7 @@ const events = {
         next: "r7_omen",
       },
       {
-        choice: "You limit merchants and give power to inspectors",
+        choice: "Cap prices and send inspectors to check weights and taxes",
         outcome:
           "Smuggling drops and order grows, but new ideas slow and people whisper.",
         mandate: -1,
@@ -393,7 +393,7 @@ const events = {
       "A solar eclipse darkens the capital at noon. People whisper about Heaven’s message.\n\nWhat will you do?",
     options: [
       {
-        choice: "You hold cleansing rites and issue moral rules",
+        choice: "Hold cleansing rites at the temple; post 'be honest' rules at offices",
         outcome:
           "You fast and pray. The court promises to be good and honest.",
         mandate: 1,
@@ -401,7 +401,7 @@ const events = {
         next: "end",
       },
       {
-        choice: "You explain it’s natural and calm the people",
+        choice: "Have astronomers show how eclipses work and speak to calm crowds",
         outcome:
           "Astronomers explain the sky. Calm words stop fear and rumors.",
         mandate: 1,
@@ -409,7 +409,7 @@ const events = {
         next: "end",
       },
       {
-        choice: "You stop rumors and punish those who spread fear",
+        choice: "Fine rumor-starters and close stalls that spread fear",
         outcome:
           "Order stays, but some say you ignore signs from Heaven.",
         mandate: -1,
