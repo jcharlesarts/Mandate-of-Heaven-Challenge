@@ -1,6 +1,6 @@
 // --- SEND SCORE TO GOOGLE SHEET ---
 function sendScoreToSheet(data) {
-  const url = "YOUR_SCRIPT_URL_HERE"; // replace with your deployed Google Apps Script Web App URL
+  const url = "https://script.google.com/macros/s/AKfycby4EmJtEL7QiMJTed9y9Cf0_CN6wecnwicRj_UASLv017_QYtpOIW3h7VeL-3ZI3U0e/exec"; // replace with your deployed Google Apps Script Web App URL
   fetch(url, {
     method: "POST",
     mode: "no-cors",
