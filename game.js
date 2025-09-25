@@ -1,6 +1,6 @@
 // --- SEND SCORE TO GOOGLE SHEET ---
 function sendScoreToSheet(data) {
-  const url = "https://script.google.com/macros/s/AKfycby4EmJtEL7QiMJTed9y9Cf0_CN6wecnwicRj_UASLv017_QYtpOIW3h7VeL-3ZI3U0e/exec"; // replace with your deployed Google Apps Script Web App URL
+  const url = "https://script.google.com/macros/s/AKfycby4EmJtEL7QiMJTed9y9Cf0_CN6wecnwicRj_UASLv017_QYtpOIW3h7VeL-3ZI3U0e/execYOUR_SCRIPT_URL_HERE"; // replace with your deployed Google Apps Script Web App URL
   fetch(url, {
     method: "POST",
     mode: "no-cors",
@@ -10,6 +10,9 @@ function sendScoreToSheet(data) {
     body: JSON.stringify(data)
   }).catch(err => console.error("Error sending score:", err));
 }
+// --- PLAYER INFO ---
+let playerInitials = "";
+let playerClassHour = "";
 // --- GAME STATE ---
 let mandate = 5;
 let tallies = {Confucian:0, Daoist:0, Legalist:0};
@@ -556,8 +559,13 @@ function play(nodeId) {
       let mandateLevel = mandate >= 8 ? "high" : mandate >= 4 ? "mid" : "low";
       let endingText = endings[maxPhilo][mandateLevel];
 
-      // Prepare score data for sending
+      // Prompt for initials and class hour before sending score
+      playerInitials = prompt("Enter your initials:", "").toUpperCase();
+      playerClassHour = prompt("Enter your class hour (1/2, 5/6, or 7/8):", "");
+      // Prepare score data for sending, including initials and class hour
       const resultData = {
+        initials: playerInitials,
+        classHour: playerClassHour,
         mandate: mandate,
         confucian: tallies.Confucian,
         daoist: tallies.Daoist,
