@@ -1,4 +1,66 @@
+/* High Scores button */
+#show-scores {
+  margin-left: auto;
+  padding: 6px 10px;
+  border: 1px solid #b48d1d;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffefc2, #f8de86);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+#show-scores:hover { filter: brightness(1.05); }
 
+/* Scores modal */
+#scores-modal[hidden] { display: none; }
+#scores-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+#scores-modal .modal-content {
+  background: var(--paper);
+  color: var(--paper-ink);
+  width: min(92%, 760px);
+  max-width: 760px;
+  padding: 16px 18px;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+#scores-body {
+  max-height: 60vh;
+  overflow: auto;
+  margin: 10px 0;
+}
+#scores-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#scores-table th,
+#scores-table td {
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  text-align: left;
+  font-size: 0.95rem;
+}
+#scores-table th {
+  background: #fff7e2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+#scores-close {
+  padding: 8px 12px;
+  border: 1px solid #b48d1d;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffefc2, #f8de86);
+  cursor: pointer;
+}
+#scores-close:hover { filter: brightness(1.05); }
 :root {
   --paper: #fff8e6;
   --paper-ink: #1b1b1b;
@@ -139,6 +201,8 @@ body {
   min-height: 88px;
 }
 #text p { margin: 0 0 10px; }
+/* Typewriter effect uses preserved newlines while animating */
+#text.typing { white-space: pre-line; }
 
 .glossary { text-decoration: underline dotted; cursor: help; }
 
@@ -280,6 +344,20 @@ button:focus-visible, .philo-card:focus-visible, .vocab-word:focus-visible, .glo
 }
 #options button:disabled { opacity: 0.9; }
 
+/* Option row + hint line */
+.option-row { margin-bottom: 8px; }
+.hint-line {
+  margin: 4px 2px 0 4px;
+  padding: 6px 8px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #5b4630;
+  background: linear-gradient(180deg, #fff8e8, #fff2d6);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  display: none; /* toggled on via button */
+}
+
 /* Mandate bar flash */
 .fill.flash-good, .vfill.flash-good { animation: flashGood 350ms ease; }
 .fill.flash-bad, .vfill.flash-bad { animation: flashBad 350ms ease; }
@@ -304,6 +382,25 @@ button:focus-visible, .philo-card:focus-visible, .vocab-word:focus-visible, .glo
 .outcome-panel .outcome-heading { font-weight: 700; margin: 0 0 6px; }
 .outcome-panel .choice-line { margin: 4px 0; }
 .outcome-panel .outcome-text { margin: 6px 0 10px; line-height: 1.4; }
+/* Teaching note styles */
+.teach-note { margin-top: 8px; font-size: 0.95rem; color: #3a2a00; }
+.outcome-panel.aligned { border-left-color: #2e7d32; }
+.outcome-panel.mismatch { border-left-color: #c62828; }
+
+/* Quiz panel (vocabulary lightning round) */
+#quiz { margin: 8px 0 6px; }
+.quiz-panel {
+  margin: 6px 0 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, #f0fff5, #e3ffe9); /* jade-tinted */
+  border: 1px solid #b9e1c4;
+  border-left: 6px solid var(--jade);
+  border-radius: 12px;
+}
+.quiz-panel .quiz-heading { font-weight: 700; margin: 0 0 6px; color: #1e5f37; }
+.quiz-panel .quiz-question { margin: 4px 0 8px; }
+.quiz-panel .quiz-choices button { margin: 6px 0; }
+.quiz-panel .quiz-feedback { margin-top: 8px; font-weight: 600; }
 
 /* Brush-flavored headers */
 h3 {
@@ -517,4 +614,53 @@ h3::after  { right: -14px; border-right: 3px solid var(--gold); }
   border-radius: 10px;
   display: inline-block;
   text-align: left;
+}
+
+.mandate-title { margin: 0 0 6px; font-size: 1rem; }
+.mandate-meter { display: grid; grid-template-rows: auto 1fr auto; gap: 6px; }
+.mandate-sky, .mandate-earth { text-align: center; font-size: 0.85rem; color: #555; }
+.mandate-track {
+  position: relative;
+  height: 220px;
+  width: 56px;
+  margin: 0 auto;
+  border: 1px solid #cfd8dc;
+  border-radius: 8px;
+  background: linear-gradient(#eef4ff, #ffffff);
+  overflow: hidden;
+}
+.mandate-marker {
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  top: 0; /* JS updates this to descend from the top */
+  height: 18px;
+  border-radius: 4px;
+  background: #2e7d32; /* default green */
+  box-shadow: 0 1px 0 rgba(0,0,0,0.15), inset 0 -1px 0 rgba(255,255,255,0.3);
+  transition: top 250ms ease, background 200ms ease;
+}
+.mandate-marker.mid { background: #f9a825; }
+.mandate-marker.low { background: #c62828; }
+.mandate-readout { text-align: center; margin-top: 6px; font-weight: 600; }
+.mandate-delta {
+  position: absolute;
+  top: 6px; right: 6px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.05);
+  color: #333;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.mandate-delta.show { opacity: 1; }
+.mandate-delta.pos { background: rgba(46,125,50,0.15); color: #1b5e20; }
+.mandate-delta.neg { background: rgba(198,40,40,0.15); color: #b71c1c; }
+
+/* Mandate of Heaven sidebar meter */
+#mandate-sidebar { margin-bottom: 16px; }
+.vocab-word.hinted {
+  border-color: #d1a62f;
+  box-shadow: 0 0 0 2px rgba(209,166,47,0.28), 0 0 12px rgba(212,175,55,0.24);
 }
